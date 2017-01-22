@@ -24,6 +24,7 @@ atlassian*
 /.htaccess.sample
 /.php_cs
 /.travis.yml
+/.user.ini
 /CHANGELOG.md
 /CONTRIBUTING.md
 /CONTRIBUTOR_LICENSE_AGREEMENT.html
