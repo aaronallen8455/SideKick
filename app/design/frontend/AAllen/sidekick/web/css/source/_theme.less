@@ -17,3 +17,28 @@
 .footer .copyright {
   text-align: center;
 }
+
+/**
+      Sub Images
+ */
+.sub-image-wrapper {
+  text-align: center;
+}
+.sub-image-block {
+  display: inline-block;
+  position: relative;
+  &:not(:last-of-type) {
+    margin-right: 12px;
+  }
+
+  span {
+    position: absolute;
+    font-size: 18pt;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 8px black;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+}
