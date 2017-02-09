@@ -27,17 +27,18 @@ define([
                 newImage.css('paddingBottom', (this.container.outerHeight() - 5) - newImage[0].height);
             }
 
-            newImage.css({maxWidth: this.container.outerWidth(), maxHeight: this.container.outerHeight() - 5})
+            newImage//.css({maxWidth: window.offsetWidth, maxHeight: this.container.outerHeight() - 5})
                 .appendTo(this.container);
 
 
             this.imageElement.css(
                 {
+                    maxWidth: this.imageElement[0].width,
                     position: 'absolute',
                     marginLeft: (newImage.outerWidth() - this.imageElement.outerWidth()) / 2
                 }).fadeOut(this.fadeLength * 1000, function () {
                     this.imageElement.detach();
-                    this.imageElement.css({position: 'static', display: 'default'});
+                    this.imageElement.css({position: 'static', display: 'default', maxWidth: '100%'});
                     this.imageElement = newImage;
                 }.bind(this)
             );

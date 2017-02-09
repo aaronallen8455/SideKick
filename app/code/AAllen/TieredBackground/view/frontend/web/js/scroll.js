@@ -13,7 +13,7 @@ define([
     }
 
     Layer.items = [];
-    Layer.incrementConst = .0005;
+    Layer.incrementConst = .0004; // determines how fast the tiers move
 
     /**
      * scroll all layers
