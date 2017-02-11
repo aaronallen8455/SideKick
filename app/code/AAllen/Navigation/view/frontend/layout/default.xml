@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block name="aallen.navigation" class="Magento\Framework\View\Element\Html\Links">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">navigation-links</argument>
+                </arguments>
+                <block name="contactus-link" class="AAllen\Navigation\Block\Html\CmsLink">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Contact Us</argument>
+                        <argument name="path" xsi:type="string">contact</argument>
+                    </arguments>
+                </block>
+                <block name="cookie-link" class="AAllen\Navigation\Block\Html\CmsLink">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Cookies</argument>
+                        <argument name="path" xsi:type="string">enable-cookies</argument>
+                    </arguments>
+                </block>
+                <block name="aallen.navigation.cmspages" class="AAllen\Navigation\Block\CmsPageLinks"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
