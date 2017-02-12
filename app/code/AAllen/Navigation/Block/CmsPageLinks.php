@@ -9,11 +9,7 @@
 namespace AAllen\Navigation\Block;
 
 
-use Magento\Cms\Api\PageRepositoryInterface;
-use Magento\Cms\Model\Page;
-use Magento\Cms\Model\ResourceModel\Page\CollectionFactory;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\SearchCriteriaBuilder;
+use AAllen\Navigation\Model\ResourceModel\Link\CollectionFactory;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\Template;
@@ -21,9 +17,9 @@ use Magento\Framework\View\Element\Template;
 class CmsPageLinks extends Template implements IdentityInterface
 {
     /** @var  \Magento\Cms\Model\ResourceModel\Page\Collection */
-    protected $pageCollection;
+    protected $linkCollection;
 
-    protected $_pages;
+    protected $_links;
 
     public function __construct(
         Template\Context $context,
@@ -31,7 +27,7 @@ class CmsPageLinks extends Template implements IdentityInterface
         CollectionFactory $collectionFactory,
         array $data = [])
     {
-        $this->pageCollection = $collectionFactory->create();
+        $this->linkCollection = $collectionFactory->create();
 
         parent::__construct($context, $data);
     }
@@ -43,7 +39,7 @@ class CmsPageLinks extends Template implements IdentityInterface
      */
     public function getLinks()
     {
-        if (!isset($this->_pages)) {
+        if (!isset($this->_links)) {
             $result = '';
             //$pages = $this->pageRepository->getList(
             //    $this->searchCriteriaBuilder->addFilters([
@@ -52,24 +48,22 @@ class CmsPageLinks extends Template implements IdentityInterface
             //    ])->create()
             //);
 
-            $pages = $this->pageCollection
-                ->addFieldToSelect(['is_active', 'show_in_navigation', 'title', 'identifier', 'sort_order'])
+            $links = $this->linkCollection
+                ->addFieldToSelect(['is_active', 'label', 'path', 'sort_order'])
                 ->addFieldToFilter('is_active', 1)
-                ->addFieldToFilter('show_in_navigation', 1)
                 ->setOrder('sort_order', AbstractDb::SORT_ORDER_ASC)
                 ->load();
 
-            /** @var Page $page */
-            foreach ($pages as $page) {
+            foreach ($links as $link) {
                 $link = $this->getLayout()->createBlock('AAllen\Navigation\Block\Html\CmsLink')
-                    ->setLabel($page->getTitle())
-                    ->setPath($page->getIdentifier());
+                    ->setLabel($link->getLabel())
+                    ->setPath($link->getPath());
 
                 $result .= $link->toHtml();
             }
-            $this->_pages = $result;
+            $this->_links = $result;
         }
-        return $this->_pages;
+        return $this->_links;
     }
 
     protected function _toHtml()
