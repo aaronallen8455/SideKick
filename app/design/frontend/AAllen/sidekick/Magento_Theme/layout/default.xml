@@ -2,6 +2,15 @@
 
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/sidekicklogo.png</argument>
+                <argument name="logo_img_width" xsi:type="number">400</argument>
+            </arguments>
+        </referenceBlock>
+
+        <move element="breadcrumbs" destination="page.top" after="aallen.navigation"/>
+
         <referenceBlock name="header" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
         <referenceBlock name="catalog.topnav" remove="true"/>

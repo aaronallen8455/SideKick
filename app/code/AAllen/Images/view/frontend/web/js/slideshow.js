@@ -11,9 +11,9 @@ define([
             this.imageSources = config.images;
             this.duration = config.duration;
             this.fadeLength = config.fadeLength;
-            this.imageElement = $(elem).children('img');
+            this.imageElement = $(elem).children('img').last();
             this.container = $(elem);
-            this.images = []; // an array of image elements
+            this.images = [this.imageElement]; // an array of image elements
 
             // attach interval
             window.setInterval(this.nextImage.bind(this), this.duration * 1000);
@@ -27,18 +27,24 @@ define([
                 newImage.css('paddingBottom', (this.container.outerHeight() - 5) - newImage[0].height);
             }
 
-            newImage//.css({maxWidth: window.offsetWidth, maxHeight: this.container.outerHeight() - 5})
-                .appendTo(this.container);
+            if (!newImage.isAttached) {
+                newImage//.css({maxWidth: window.offsetWidth, maxHeight: this.container.outerHeight() - 5})
+                    .appendTo(this.container);
+                newImage.isAttached = true;
+            }
+
+            newImage.css({position: 'static', opacity: 1, maxWidth: '100%'});
 
 
             this.imageElement.css(
                 {
                     maxWidth: this.imageElement[0].width,
                     position: 'absolute',
-                    marginLeft: (newImage.outerWidth() - this.imageElement.outerWidth()) / 2
-                }).fadeOut(this.fadeLength * 1000, function () {
-                    this.imageElement.detach();
-                    this.imageElement.css({position: 'static', display: 'default', maxWidth: '100%'});
+                    marginLeft: (newImage.outerWidth() - this.imageElement.outerWidth()) / 2,
+                    left: newImage[0].offsetLeft
+                }).animate({opacity: 0}, this.fadeLength * 1000, function () {
+                    //this.imageElement.detach();
+                    //this.imageElement.css({position: 'static', display: 'default', maxWidth: '100%'});
                     this.imageElement = newImage;
                 }.bind(this)
             );

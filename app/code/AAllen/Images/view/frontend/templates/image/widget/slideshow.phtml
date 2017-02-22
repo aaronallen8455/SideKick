@@ -8,5 +8,8 @@
         "fadeLength": <?php echo $block->getFadeLength() ?>
     }
 }'>
+    <!--A placeholder needed by Chrome-->
+    <img src="<?php echo current($images) ?>" style="position: absolute; opacity: 0; height: 100%; width: 5px">
+
     <img src="<?php echo current($images) ?>">
 </div>
