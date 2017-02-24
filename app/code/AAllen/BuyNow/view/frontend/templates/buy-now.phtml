@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var $block \Magento\Ui\Component\Control\Button
+ */
+?>
+<?php echo $block->getBeforeHtml(); ?>
+<button <?php /* @escapeNotVerified */ echo $block->getAttributesHtml(), $block->getUiId(); ?>
+    data-mage-init='{"AAllen_BuyNow/js/buy-now": {}}'>
+    <span><?php /* @escapeNotVerified */ echo $block->getLabel(); ?></span>
+</button>
+<?php echo $block->getAfterHtml(); ?>

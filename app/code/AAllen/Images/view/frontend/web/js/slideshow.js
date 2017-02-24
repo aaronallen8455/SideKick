@@ -16,24 +16,24 @@ define([
             this.images = [this.imageElement]; // an array of image elements
 
             // attach interval
-            window.setInterval(this.nextImage.bind(this), this.duration * 1000);
+            window.setInterval(this.nextImage.bind(this), (this.duration + this.fadeLength) * 1000);
         },
 
         /**
          * Display the next image
          */
         changeImage: function (newImage) {
-            if (newImage[0].height < this.container.outerHeight() - 5) {
-                newImage.css('paddingBottom', (this.container.outerHeight() - 5) - newImage[0].height);
-            }
+            //if (newImage[0].height < this.container.outerHeight() - 5) {
+            //    newImage.css('paddingBottom', (this.container.outerHeight() - 5) - newImage[0].height);
+            //}
 
-            if (!newImage.isAttached) {
-                newImage//.css({maxWidth: window.offsetWidth, maxHeight: this.container.outerHeight() - 5})
-                    .appendTo(this.container);
-                newImage.isAttached = true;
-            }
+            //if (!newImage.isAttached) {
+            newImage//.css({maxWidth: window.offsetWidth, maxHeight: this.container.outerHeight() - 5})
+                .appendTo(this.container);
+            //    newImage.isAttached = true;
+            //}
 
-            newImage.css({position: 'static', opacity: 1, maxWidth: '100%'});
+            //newImage.css({position: 'static', opacity: 1, maxWidth: '100%'});
 
 
             this.imageElement.css(
@@ -43,8 +43,8 @@ define([
                     marginLeft: (newImage.outerWidth() - this.imageElement.outerWidth()) / 2,
                     left: newImage[0].offsetLeft
                 }).animate({opacity: 0}, this.fadeLength * 1000, function () {
-                    //this.imageElement.detach();
-                    //this.imageElement.css({position: 'static', display: 'default', maxWidth: '100%'});
+                    this.imageElement.detach();
+                    this.imageElement.css({position: 'static', opacity: 1, maxWidth: '100%'});
                     this.imageElement = newImage;
                 }.bind(this)
             );
