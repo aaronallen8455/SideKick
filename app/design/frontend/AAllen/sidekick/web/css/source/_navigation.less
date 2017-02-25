@@ -1,0 +1,61 @@
+//
+//  Variables
+//  _____________________________________________
+
+@active-nav-indent: 54px;
+
+/**
+      COMMON
+ */
+& when (@media-common = true) {
+  .nav-toggle {
+    .lib-icon-font(
+            @icon-menu,
+      @_icon-font-size: 28px,
+      @_icon-font-color: @header-icons-color,
+      @_icon-font-color-hover: @header-icons-color-hover
+    );
+    .lib-icon-text-hide();
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    left: 15px;
+    position: absolute;
+    top: 15px;
+    z-index: 14;
+  }
+}
+
+/**
+      MOBILE
+ */
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .navigation {
+    -webkit-overflow-scrolling: touch;
+    .lib-css(transition, left .3s, 1);
+    .lib-css(background, @navigation__background);
+    height: 100%;
+    left: -80%;
+    left: calc(~'-1 * (100% - @{active-nav-indent})');
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 80%;
+    width: calc(~'100% - @{active-nav-indent}');
+    z-index: 900;
+    padding: 0;
+  }
+
+  .nav-open {
+    left: 0;
+  }
+}
+
+/**
+      DESKTOP
+ */
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .nav-toggle {
+    display: none;
+  }
+}

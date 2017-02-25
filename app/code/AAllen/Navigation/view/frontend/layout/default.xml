@@ -3,12 +3,15 @@
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="page.top">
-            <block name="aallen.navigation" class="Magento\Framework\View\Element\Html\Links">
-                <arguments>
-                    <argument name="css_class" xsi:type="string">navigation-links</argument>
-                </arguments>
-                <block name="aallen.navigation.cmspages" class="AAllen\Navigation\Block\CmsPageLinks"/>
-            </block>
+            <container name="aallen.navcontainer" htmlClass="navigation" htmlTag="div">
+                <block name="aallen.navigation" class="Magento\Framework\View\Element\Html\Links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">navigation-links</argument>
+                    </arguments>
+                    <block name="aallen.navigation.cmspages" class="AAllen\Navigation\Block\CmsPageLinks"/>
+                </block>
+                <block name="allen.navigation.js" class="Magento\Framework\View\Element\Template" template="AAllen_Navigation::navigation-js.phtml"/>
+            </container>
         </referenceContainer>
     </body>
 </page>
