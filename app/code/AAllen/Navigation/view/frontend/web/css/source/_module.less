@@ -11,3 +11,38 @@
     text-transform: uppercase;
   }
 }
+
+.nav-mobile-title {
+  display: none;
+}
+
+/**
+      MOBILE
+ */
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .navigation-links {
+    text-align: left;
+    font-size: 1.6rem;
+
+    li {
+      display: block;
+      border-top: 1px solid @color-gray82;
+      margin-bottom: 0;
+      padding: 0;
+
+      &:last-of-type {
+        border-bottom: 1px solid @color-gray82;
+      }
+
+      a, strong {
+        display: block;
+        padding: 20px;
+      }
+    }
+  }
+
+  .nav-mobile-title {
+    display: block;
+    margin: 20px;
+  }
+}

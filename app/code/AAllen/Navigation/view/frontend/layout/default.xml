@@ -4,6 +4,12 @@
     <body>
         <referenceContainer name="page.top">
             <container name="aallen.navcontainer" htmlClass="navigation" htmlTag="div">
+                <block class="Magento\Framework\View\Element\Template" template="AAllen_Navigation::menu-title.phtml">
+                    <arguments>
+                        <argument name="text" xsi:type="string">Menu</argument>
+                        <argument name="html_class" xsi:type="string">nav-mobile-title</argument>
+                    </arguments>
+                </block>
                 <block name="aallen.navigation" class="Magento\Framework\View\Element\Html\Links">
                     <arguments>
                         <argument name="css_class" xsi:type="string">navigation-links</argument>
