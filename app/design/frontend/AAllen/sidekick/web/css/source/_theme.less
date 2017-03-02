@@ -12,6 +12,29 @@
 //  All new variables should be placed in local theme lib or local theme files
 
 /**
+      Colors
+ */
+@color-darkblue1: #539eff;
+@color-myblue1: #28a8ff;
+
+@active__color: @color-myblue1;
+
+/**
+      Overrides
+ */
+@button-primary__background: @color-myblue1;
+//@button-primary__gradient-color-start: @color-myblue1;
+//@button-primary__gradient-color-end: #1ac0f6;
+//@button-primary__gradient: true;
+//@button-primary__gradient-direction: vertical;
+@button-primary__border: none;
+@button-primary__hover__border: none;
+@button-primary__hover__background: darken(@color-myblue1, 10%);
+//@button-primary__hover__gradient-color-start: darken(@color-myblue1,10%);
+//@button-primary__hover__gradient-color-end: darken(#1ac0f6,10%);
+//@button-primary__active__gradient-color-start: @button-primary__hover__gradient-color-start;
+//@button-primary__active__gradient-color-end: @button-primary__hover__gradient-color-end;
+/**
       Background
  */
 body {
@@ -31,6 +54,9 @@ body {
 }
 .minicart-wrapper {
   margin-left: -100%;
+}
+.current {
+  color: @color-gray-middle3;
 }
 
 /**
@@ -65,3 +91,7 @@ body {
     text-align: center;
   }
 }
+
+/**
+      Check Out
+ */

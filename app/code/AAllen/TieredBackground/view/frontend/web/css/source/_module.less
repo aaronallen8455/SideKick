@@ -10,12 +10,21 @@
   z-index: -101;
 }
 .tiered-background.two {
-  bottom: 200px;
+  bottom: 190px;
   z-index: -102;
-  opacity: .6;
+  //opacity: .6;
 }
 .tiered-background.three {
-  bottom: 240px;
+  bottom: 215px;
   z-index: -103;
-  opacity: .45;
+  //opacity: .45;
+}
+
+/**
+      MOBILE
+ */
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .tiered-background {
+    display: none;
+  }
 }
