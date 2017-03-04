@@ -13,7 +13,7 @@ define([
 
         initialize: function (config, element) {
             $(element).click(this.toggle.bind(this));
-            this.swipeArea.on('mousedown', this.swipe.bind(this));
+            this.swipeArea.on('touchstart', this.swipe.bind(this));
 
             return this._super();
         },
@@ -34,21 +34,22 @@ define([
         },
 
         swipe: function (e) {
-            var xCoord = e.screenX;
+            var xCoord = e.originalEvent.touches[0].clientX;
 
             // close the menu on swipe left
-            this.swipeArea.on('mousemove', function (e) {
-                if (xCoord - e.screenX >= 20) {
-                    this.swipeArea.off('mousemove');
+            this.swipeArea.on('touchmove', function (e) {
+                var x = e.originalEvent.touches[0].clientX;
+                if (xCoord - x >= 20) {
+                    this.swipeArea.off('touchmove');
                     this.toggle();
-                } else if (e.screenX > xCoord) {
-                    xCoord = e.screenX;
+                } else if (x > xCoord) {
+                    xCoord = x;
                 }
             }.bind(this));
 
-            this.swipeArea.on('mouseup', function () {
-                this.swipeArea.off('mousemove');
+            this.swipeArea.on('touchend', function () {
+                this.swipeArea.off('touchmove');
             }.bind(this));
         }
-    })
+    });
 });
