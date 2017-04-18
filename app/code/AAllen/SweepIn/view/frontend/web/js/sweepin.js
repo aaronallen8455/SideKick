@@ -2,8 +2,9 @@
  * Created by Aaron Allen on 12/26/2016.
  */
 define([
-    'jquery'
-], function ($) {
+    'jquery',
+    'matchMedia'
+], function ($, mediaCheck) {
     'use strict';
 
     var elements = [], // collection of all sweep-in elements
@@ -67,6 +68,8 @@ define([
                 //}
             );
 
+            queued.triggered = true;
+
             // remove handler if no more elements
             if (elements.length === 0) {
                 win.off('scroll', scrollHandler);
@@ -79,23 +82,47 @@ define([
     return function (config, element) {
         var el = $(element);
 
-        elements.push({
+        var obj = {
             element: el,
-            direction: config ? config.direction : 'left'
-        });
+            direction: config ? config.direction : 'left',
+            triggered: false
+        };
+
+        elements.push(obj);
 
         // sort elements
         elements.sort(function (a, b) {
             return a.element.offset().top - b.element.offset().top;
         });
 
-        // make element relative positioned and hidden
-        el.css({position: 'relative', opacity: 0});
+        // effect will be disabled on mobile.
+        mediaCheck({
+            media: '(min-width: 768px)',
+            // Switch to Desktop Version
+            entry: function () {
+                // make element relative positioned and hidden if it hasn't already been animated
+                if (obj.triggered === false) {
+                    el.css({position: 'relative', opacity: 0});
+                }
 
-        // register handler
-        if (!handleAttached) { // only attach one handler for all elements
-            handleAttached = true;
-            win.on('scroll', scrollHandler);
-        }
+                // register handler
+                if (!handleAttached) { // only attach one handler for all elements
+                    handleAttached = true;
+                    win.on('scroll', scrollHandler);
+                }
+            },
+            // Switch to Mobile Version
+            exit: function () {
+                el.css({position: 'static', opacity: 1});
+
+                // remove handler
+                if (handleAttached) {
+                    handleAttached = false;
+                    win.off('scroll', scrollHandler)
+                }
+            }
+        });
+
+
     }
 });
