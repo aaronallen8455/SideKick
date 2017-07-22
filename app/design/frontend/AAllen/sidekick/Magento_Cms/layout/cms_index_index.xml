@@ -2,6 +2,24 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceContainer name="page.wrapper">
+            <container htmlId="topinfo" htmlTag="div" name="topinfo" before="main.content">
+                <block class="AAllen\Images\Block\Widget\SlideShow">
+                    <arguments>
+                        <argument name="image1" xsi:type="number">0</argument>
+                        <argument name="image2" xsi:type="number">1</argument>
+                        <argument name="image3" xsi:type="number">2</argument>
+                        <argument name="duration" xsi:type="number">5</argument>
+                        <argument name="fade_length" xsi:type="number">2</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">1</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
         <referenceBlock name="page.main.title" remove="true"/>
     </body>
 </page>

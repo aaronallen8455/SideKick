@@ -3,47 +3,29 @@ define([
 ], function ($) {
     'use strict';
 
-    var center = 215;
+    return function (config) {
+        var topEl = $(config.top), // the top drawn cloud
+            middleEl = $(config.middle), // the middle cloud
+            bottomEl = $(config.bottom), // the bottom "closest" cloud
+            bottomInitPosition = parseInt(bottomEl.css('bottom').slice(0,-2)), // init y-position of top
+            midInitPosition = parseInt(middleEl.css('bottom').slice(0,-2)),
+            topInitPosition = parseInt(topEl.css('bottom').slice(0,-2)),
+            bottomMidRatio = bottomInitPosition / midInitPosition,
+            bottomTopRatio = bottomInitPosition / topInitPosition;
 
-    function Layer(element) {
-        this.element = element;
-        this.factor = null;
-        this.initialYposition = parseInt($(element).css('bottom').slice(0,-2));
-        Layer.items.push(this);
-    }
+        function onScroll(e) {
+            var yScroll = window.scrollY;
+            window.requestAnimationFrame(function () {
+                // number of pixels to change bottom cloud position by
+                var change = .035 * yScroll;
 
-    Layer.items = [];
-    Layer.incrementConst = .0004; // determines how fast the tiers move
-
-    /**
-     * scroll all layers
-     * @param e
-     */
-    Layer.scrollAll = function (e) {
-        for (var i=0; i<Layer.items.length; i++) {
-            Layer.items[i].scroll(window.scrollY);
-        }
-    };
-
-    /**
-     * scroll the layer down an amount dependant on initial position
-     * @param scrollY
-     */
-    Layer.prototype.scroll = function (scrollY) {
-        //if (this.initialYposition <= 120) return; // bottom cloud is static
-
-        if (!this.factor) {
-            // init factor based on initial position
-            this.factor = this.constructor.incrementConst * (this.initialYposition - center);
+                // change position of the clouds
+                bottomEl.css('bottom', bottomInitPosition + change);
+                middleEl.css('bottom', midInitPosition + change * bottomMidRatio);
+                topEl.css('bottom', topInitPosition + change * bottomTopRatio);
+            })
         }
 
-        this.element.style.bottom = this.initialYposition - (scrollY * this.factor) + 'px';
-    };
-
-    return function (config, element) {
-        new Layer(element);
-
-        // attach the scroll handler
-        document.addEventListener('scroll', Layer.scrollAll, false);
+        $(window).scroll(onScroll);
     };
 });

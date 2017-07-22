@@ -4,8 +4,8 @@
     <body>
         <referenceBlock name="logo">
             <arguments>
-                <argument name="logo_file" xsi:type="string">images/sidekicklogo.png</argument>
-                <argument name="logo_img_width" xsi:type="number">400</argument>
+                <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                <argument name="logo_img_width" xsi:type="number">800</argument>
             </arguments>
         </referenceBlock>
 

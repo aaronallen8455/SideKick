@@ -1,9 +1,21 @@
-<div class="tiered-background one" data-mage-init='{"AAllen_TieredBackground/js/scroll":{}}'>
+<div id="tiered-background-one" class="tiered-background">
     <img src="<?php echo $block->getViewFileUrl('AAllen_TieredBackground::images/clouds3.png')?>">
 </div>
-<div class="tiered-background two" data-mage-init='{"AAllen_TieredBackground/js/scroll":{}}'>
+<div id="tiered-background-two" class="tiered-background">
     <img src="<?php echo $block->getViewFileUrl('AAllen_TieredBackground::images/clouds22.png')?>">
 </div>
-<div class="tiered-background three" data-mage-init='{"AAllen_TieredBackground/js/scroll":{}}'>
+<div id="tiered-background-three" class="tiered-background">
     <img src="<?php echo $block->getViewFileUrl('AAllen_TieredBackground::images/clouds34.png')?>">
 </div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "AAllen_TieredBackground/js/scroll": {
+                "top": "#tiered-background-three",
+                "middle": "#tiered-background-two",
+                "bottom": "#tiered-background-one"
+            }
+        }
+    }
+</script>
