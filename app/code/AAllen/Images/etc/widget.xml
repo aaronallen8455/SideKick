@@ -7,6 +7,42 @@
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="aallen_jssor" class="AAllen\Images\Block\Widget\Jssor">
+        <label>Jssor Slider</label>
+        <description>Uses the Jssor library to create a slider from a set of images.</description>
+        <parameters>
+            <parameter name="image1" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>First Image</label>
+            </parameter>
+            <parameter name="image2" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>Second Image</label>
+            </parameter>
+            <parameter name="image3" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>Third Image</label>
+            </parameter>
+            <parameter name="image4" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>Fourth Image</label>
+            </parameter>
+            <parameter name="image5" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>Fifth Image</label>
+            </parameter>
+            <parameter name="image6" xsi:type="select" visible="true" source_model="AAllen\Images\Model\Config\Source\ImagesSource">
+                <label>Sixth Image</label>
+            </parameter>
+            <parameter name="duration" xsi:type="text" required="true" visible="true">
+                <label>Duration</label>
+                <description>Number of seconds until image switches.</description>
+                <value>5</value>
+            </parameter>
+            <parameter name="width" xsi:type="text" required="true" visible="true">
+                <label>Image Width</label>
+            </parameter>
+            <parameter name="height" xsi:type="text" required="true" visible="true">
+                <label>Image Height</label>
+            </parameter>
+        </parameters>
+    </widget>
+
     <widget id="aallen_slideshow" class="AAllen\Images\Block\Widget\SlideShow">
         <label>SlideShow</label>
         <description>Displays the selected images as a slide show.</description>
