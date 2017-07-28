@@ -9,7 +9,8 @@
             </arguments>
         </referenceBlock>
 
-        <move element="breadcrumbs" destination="page.top" after="aallen.navigation"/>
+        <referenceContainer name="breadcrumbs" display="false"/>
+        <!--<move element="breadcrumbs" destination="page.top" after="aallen.navigation"/>-->
 
         <referenceBlock name="header" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>

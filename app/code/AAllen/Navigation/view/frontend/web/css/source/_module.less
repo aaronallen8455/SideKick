@@ -9,13 +9,14 @@
     padding: 10px;
     font-weight: 700;
     text-transform: uppercase;
+    font-size: 1.15em;
   }
 
   a {
-    color: yellow;
+    color: @color-yellow1;
 
     :hover {
-      color: lighten(yellow, 10%);
+      color: @color-yellow-light1;
     }
 
   }
@@ -47,6 +48,15 @@
         display: block;
         padding: 20px;
       }
+    }
+
+    a {
+      color: @link__color;
+
+      :hover {
+        color: @link__color;
+      }
+
     }
   }
 

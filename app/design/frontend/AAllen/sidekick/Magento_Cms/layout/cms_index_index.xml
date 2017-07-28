@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="page.wrapper">
             <container htmlId="topinfo" htmlTag="div" name="topinfo" before="main.content">
-                <block class="AAllen\Images\Block\Widget\Jssor">
+                <!--<block class="AAllen\Images\Block\Widget\Jssor">
                     <arguments>
                         <argument name="image1" xsi:type="number">0</argument>
                         <argument name="image2" xsi:type="number">1</argument>
@@ -13,7 +13,18 @@
                         <argument name="width" xsi:type="string">998</argument>
                         <argument name="height" xsi:type="string">439</argument>
                     </arguments>
+                </block>-->
+
+                <block class="AAllen\Images\Block\Widget\SlideShow">
+                    <arguments>
+                        <argument name="image1" xsi:type="number">0</argument>
+                        <argument name="image2" xsi:type="number">1</argument>
+                        <argument name="image3" xsi:type="number">2</argument>
+                        <argument name="duration" xsi:type="number">5</argument>
+                        <argument name="fade_length" xsi:type="number">2</argument>
+                    </arguments>
                 </block>
+
                 <block class="Magento\Cms\Block\Block">
                     <arguments>
                         <argument name="block_id" xsi:type="string">1</argument>

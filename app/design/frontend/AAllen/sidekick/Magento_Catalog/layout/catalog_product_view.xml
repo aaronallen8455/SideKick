@@ -9,6 +9,6 @@
     <body>
         <referenceBlock name="product.info.sku" remove="true"/>
         <referenceBlock name="view.addto.compare" remove="true"/>
-        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <!--<move element="page.main.title" destination="product.info.main" before="-"/>-->
     </body>
 </page>
